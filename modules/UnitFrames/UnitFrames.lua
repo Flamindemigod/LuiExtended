@@ -1662,7 +1662,7 @@ function UnitFrames.RepositionDefaultFrames()
     if UnitFrames.SV.RepositionFrames then
         -- Shift to center magicka and stamina bars
         ZO_PlayerAttributeHealth:ClearAnchors()
-        ZO_PlayerAttributeHealth:SetAnchor(BOTTOM, ActionButton5, TOP, 0, -47 - UnitFrames.SV.RepositionFramesAdjust)
+        ZO_PlayerAttributeHealth:SetAnchor(BOTTOM, GuiRoot, BOTTOM, 0, -47 - UnitFrames.SV.RepositionFramesAdjust)
         ZO_PlayerAttributeMagicka:ClearAnchors()
         ZO_PlayerAttributeMagicka:SetAnchor(TOPRIGHT, ZO_PlayerAttributeHealth, BOTTOM, -1, 2)
         ZO_PlayerAttributeStamina:ClearAnchors()
@@ -2465,7 +2465,11 @@ function UnitFrames.OnReticleTargetChanged(eventCode)
             end
 
             -- Finally show custom target frame
+          if GetUnitType("reticleover") > 2 then
             UnitFrames.CustomFrames.reticleover.control:SetHidden(false)
+          else
+            UnitFrames.CustomFrames.reticleover.control:SetHidden(true)
+          end
         end
 
         -- Unhide second target frame only for player enemies
