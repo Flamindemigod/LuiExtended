@@ -4,16 +4,22 @@
 --]]
 
 
+---@class (partial) LuiExtended
 local LUIE = LUIE
 
 local zo_strformat = zo_strformat
 local table_concat = table.concat
 
-local changelogMessages = {
-    "|cFFA500LuiExtended Version 6.7.1|r",
+local changelogMessages =
+{
+    "|cFFA500LuiExtended Version 6.7.4|r",
     "",
     "|cFFFF00General:|r",
-    "[*] Update for Gold Road.",
+    "[*] Oakensoul support added for buff icons!.",
+    "",
+    "[*] Added missing assistants for keybinds.",
+    "",
+    "[*] Added Warden AOE pre-Charm AoE to AoE alerts.",
     "",
 }
 

@@ -4,6 +4,7 @@
 --]]
 
 
+---@class (partial) LuiExtended
 local LUIE = LUIE
 LUIE.CombatTextPool = ZO_ObjectPool:Subclass()
 local CombatTextPool = LUIE.CombatTextPool
@@ -18,7 +19,7 @@ local easeOutIn = function (progress)
     progress = progress < 0.5 and progress * 2 or (1 - progress) * 2
     return zo_sqrt(1 - ((1 - progress) ^ 2))
 end
-
+---@diagnostic disable-next-line: duplicate-set-field
 function CombatTextPool:New(poolType)
     -- Check if poolType is not nil or empty
     if not poolType then
@@ -56,7 +57,8 @@ function CombatTextPool:CreateNewAnimation()
     local Settings = LUIE.CombatText.SV
     local animationSpeed = 1 / (Settings.animation.animationDuration / 100)
 
-    local animationTypes = {
+    local animationTypes =
+    {
         [poolTypes.ANIMATION_CLOUD] = function ()
             anim:Alpha(nil, 0, 1, animationSpeed * 50)
             anim:Alpha(nil, 1, 0, animationSpeed * 500, animationSpeed * 1500, slowFast)

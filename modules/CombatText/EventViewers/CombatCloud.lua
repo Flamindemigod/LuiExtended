@@ -4,19 +4,19 @@
 --]]
 
 
+---@class (partial) LuiExtended
 local LUIE = LUIE
 
----@class LUIE.CombatTextCombatCloudEventViewer : LUIE, ZO_Object
-LUIE.CombatTextCombatCloudEventViewer = LUIE.CombatTextEventViewer:Subclass()
-
-local CombatTextCombatCloudEventViewer = LUIE.CombatTextCombatCloudEventViewer
+---@class CombatTextCombatCloudEventViewer : CombatTextEventViewer, ZO_InitializingObject 
+local CombatTextCombatCloudEventViewer = LUIE.CombatTextEventViewer:Subclass()
+LUIE.CombatTextCombatCloudEventViewer = CombatTextCombatCloudEventViewer
 
 local CombatTextConstants = LUIE.Data.CombatTextConstants
 local AbbreviateNumber = LUIE.AbbreviateNumber
 local string_format = string.format
 
 function CombatTextCombatCloudEventViewer:New(...)
-    local obj = LUIE.CombatTextEventViewer:New(...)
+    local obj = LUIE.CombatTextEventViewer:New(...) --[[@as CombatTextEventViewer]]
     obj:RegisterCallback(CombatTextConstants.eventType.COMBAT, function (...)
         self:OnEvent(...)
     end)
@@ -89,7 +89,7 @@ function CombatTextCombatCloudEventViewer:View(combatType, powerType, value, abi
 
     if isDamageCritical or isHealingCritical or isDotCritical or isHotCritical then
         offsetX, offsetY = zo_random(-radiusW * 0.5, radiusW * 0.5), zo_random(-radiusH * 0.5, radiusH * 0.5)
-    elseif isDot or isHot then                               -- http://www.mathopenref.com/coordgeneralellipse.html
+    elseif isDot or isHot then -- http://www.mathopenref.com/coordgeneralellipse.html
         offsetX = zo_random(-radiusW * 0.95, radiusW * 0.95) -- Make radiusW a bit smaller to avoid horizontal animations
         offsetY = zo_sqrt(radiusH ^ 2 * (1 - (offsetX ^ 2 / radiusW ^ 2)))
         if combatType == CombatTextConstants.combatType.OUTGOING then

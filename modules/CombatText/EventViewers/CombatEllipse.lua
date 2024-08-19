@@ -4,6 +4,7 @@
 --]]
 
 
+---@class (partial) LuiExtended
 local LUIE = LUIE
 LUIE.CombatTextCombatEllipseEventViewer = LUIE.CombatTextEventViewer:Subclass()
 local CombatTextCombatEllipseEventViewer = LUIE.CombatTextCombatEllipseEventViewer
@@ -11,6 +12,7 @@ local CombatTextCombatEllipseEventViewer = LUIE.CombatTextCombatEllipseEventView
 local CombatTextConstants = LUIE.Data.CombatTextConstants
 local AbbreviateNumber = LUIE.AbbreviateNumber
 local string_format = string.format
+---@diagnostic disable-next-line: duplicate-set-field
 function CombatTextCombatEllipseEventViewer:New(...)
     local obj = LUIE.CombatTextEventViewer:New(...)
     obj:RegisterCallback(CombatTextConstants.eventType.COMBAT, function (...)

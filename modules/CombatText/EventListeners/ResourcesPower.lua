@@ -3,19 +3,21 @@
     License: The MIT License (MIT)
 --]]
 
+---@class (partial) LuiExtended
 local LUIE = LUIE
 LUIE.CombatTextResourcesPowerEventListener = LUIE.CombatTextEventListener:Subclass()
 local CombatTextResourcesPowerEventListener = LUIE.CombatTextResourcesPowerEventListener
 
 local eventType = LUIE.Data.CombatTextConstants.eventType
 local resourceType = LUIE.Data.CombatTextConstants.resourceType
-
+---@diagnostic disable-next-line: duplicate-set-field
 function CombatTextResourcesPowerEventListener:New()
     local obj = LUIE.CombatTextEventListener:New()
     obj:RegisterForEvent(EVENT_POWER_UPDATE, function (...)
         self:OnEvent(...)
     end)
-    self.powerInfo = {
+    self.powerInfo =
+    {
         [COMBAT_MECHANIC_FLAGS_HEALTH] = { wasWarned = false, resourceType = resourceType.LOW_HEALTH },
         [COMBAT_MECHANIC_FLAGS_STAMINA] = { wasWarned = false, resourceType = resourceType.LOW_STAMINA },
         [COMBAT_MECHANIC_FLAGS_MAGICKA] = { wasWarned = false, resourceType = resourceType.LOW_MAGICKA },
